@@ -1,11 +1,376 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Why are hyperlinks blue ?</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Why are hyperlinks blue? – A digital investigation</title>
+<link href="styles.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 </head>
 <body>
-    <h1>Hello</h1>
+<!-- Barre de progression -->
+<div class="progress-bar">
+<div class="progress-fill" id="progressFill"></div>
+</div>
+<!-- Section 1: Introduction -->
+<section class="section" id="intro">
+<div class="intro-container" id="introContainer">
+<!-- Motif de fond avec le mot "hyperlinks" répété -->
+<div class="background-pattern" id="backgroundPattern"></div>
+<!-- Contenu principal -->
+<div class="intro-content">
+<div class="intro-title">
+<h1 class="text-white">
+<span class="fade-in-1">Why are</span>
+<br/>
+<span class="font-bold fade-in-2">hyperlinks</span>
+<br/>
+<span class="font-bold fade-in-3">Blue</span>
+<span class="fade-in-4">?</span>
+</h1>
+</div>
+<div class="scroll-indicator">
+<button aria-label="Défiler vers le bas" class="scroll-button" id="introScrollButton">
+<svg class="chevron-down" fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
+<path d="m6 9 6 6 6-6"></path>
+</svg>
+</button>
+</div>
+</div>
+<!-- Particules flottantes -->
+<div class="particles" id="particles"></div>
+</div>
+</section>
+<!-- Section 2: Timeline -->
+<section class="section" id="timeline">
+<div class="container">
+<h2 class="section-title">The history of the blue link</h2>
+<p class="section-description">
+    The internet is now part of every aspect of our lives, but have you ever noticed that links are blue? Let’s discover together the origin of this convention.
+      </p>
+<div class="timeline-container">
+<!-- Timeline line -->
+<div class="timeline-line"></div>
+<!-- Timeline events -->
+<div class="timeline-event" data-year="1964">
+<div class="timeline-marker"></div>
+<div class="timeline-content">
+<span class="timeline-year">1964</span>
+<h3 class="timeline-title">Project Xanadu</h3>
+<p class="timeline-description">
+    Ted Nelson’s Xanadu project introduced the concept of hypertext with links that visually connect two pages.
+            </p>
+<div class="timeline-image">
+<img alt="Illustration de Project Xanadu" src="images/1964 – Project Xanadu.webp"/>
+</div>
+</div>
+</div>
+<div class="timeline-event" data-year="1983">
+<div class="timeline-marker"></div>
+<div class="timeline-content">
+<span class="timeline-year">1983</span>
+<h3 class="timeline-title">HyperTIES</h3>
+<p class="timeline-description">
+    The HyperTIES system used cyan text on a black background. Perhaps an ancestor of the blue link.
+            </p>
+<div class="timeline-image">
+<img alt="Illustration de HyperTIES" src="images/1983 – HyperTIES system.webp"/>
+</div>
+</div>
+</div>
+<div class="timeline-event" data-year="1985">
+<div class="timeline-marker"></div>
+<div class="timeline-content">
+<span class="timeline-year">1985</span>
+<h3 class="timeline-title">Windows 1.0</h3>
+<p class="timeline-description">
+    Windows 1.0 introduced the first underlining for clickable elements and used dark blue for borders and titles.
+            </p>
+<div class="timeline-image">
+<img alt="Illustration de Windows 1.0" src="images/1985 – Windows 1.0.png"/>
+</div>
+</div>
+</div>
+<div class="timeline-event" data-year="1987">
+<div class="timeline-marker"></div>
+<div class="timeline-content">
+<span class="timeline-year">1987</span>
+<h3 class="timeline-title">WWW</h3>
+<p class="timeline-description">
+    The first version of the World Wide Web featured underlined links, but without any specific color.
+            </p>
+<div class="timeline-image">
+<img alt="Illustration de WWW" src="images/1987 – WorldWideWeb (WWW) .webp"/>
+</div>
+</div>
+</div>
+<div class="timeline-event" data-year="1993">
+<div class="timeline-marker"></div>
+<div class="timeline-content">
+<span class="timeline-year">1993</span>
+<h3 class="timeline-title">Mosaic</h3>
+<p class="timeline-description">
+    The Mosaic browser finally introduced the blue link! A convention that persists to this day.
+            </p>
+<div class="timeline-image">
+<img alt="Illustration de Mosaic" src="images/January, 1993 – Mosaic.webp"/>
+</div>
+</div>
+</div>
+<!-- Interactive link demo -->
+<div class="link-demo">
+<h3>Try the early browser experience:</h3>
+<p>Click on this link to see how it changes color:</p>
+<a class="demo-link" href="#" id="demoLink">A link like in 1993</a>
+<p class="demo-result hidden" id="demoResult">
+            You just saw the classic transition: black → blue → purple (visited)
+            <br/>
+<span class="reset-link">Click again to reset</span>
+</p>
+</div>
+<div class="section-nav">
+<button class="continue-button" id="timelineContinueBtn">
+            Continue reading
+            <svg class="chevron-down" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="m6 9 6 6 6-6"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: Perception Test -->
+<section class="section" id="perception-test">
+<div class="container">
+<h2 class="section-title">Why Blue?</h2>
+<p class="section-description">
+    Now that we know the history, let’s find out why blue was chosen. Does our brain perceive this color differently?
+      </p>
+<div class="card">
+<div class="card-header">
+<h3 class="card-title">Visual perception test</h3>
+<p class="card-description">Click on the word "link" as fast as possible when it appears.</p>
+</div>
+<div class="card-content">
+<div class="game-start" id="gameStart">
+<p>This test will measure your reaction time in spotting the word "link" in different colors.</p>
+<button class="start-button" id="startGameBtn">Start test</button>
+</div>
+<div class="countdown hidden" id="countdown">
+<span id="countdownNumber">3</span>
+<p>Get ready...</p>
+</div>
+<div class="game-area hidden" id="gameArea">
+<div class="game-progress">
+<span id="roundInfo">Round 1/5</span>
+<div class="progress-container">
+<div class="progress-bar-game" id="gameProgress" style="width: 20%"></div>
+</div>
+</div>
+<div class="words-grid" id="wordsGrid"></div>
+</div>
+<div class="game-results hidden" id="gameResults">
+<h3>Results</h3>
+<div class="results-container">
+<div class="result-item">
+<p id="avgReactionTime">Average reaction time: -- ms</p>
+</div>
+<div class="result-item blue">
+<p id="blueReactionTime">Average for blue links: -- ms</p>
+</div>
+<div class="result-item">
+<p id="otherReactionTime">Average for other colors: -- ms</p>
+</div>
+<div class="result-item highlight">
+<p id="conclusion"></p>
+</div>
+</div>
+</div>
+</div>
+<div class="card-footer">
+<button class="continue-button hidden" id="perceptionContinueBtn">
+            Continue reading
+            <svg class="chevron-down" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="m6 9 6 6 6-6"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: CSS Experience -->
+<section class="section" id="css-experience">
+<div class="container">
+<h2 class="section-title">The future of the link</h2>
+Now that we’ve explored why links are blue, it’s your turn to create. What do you imagine the future of the hyperlink to be?
+      </p>
+<div class="tabs-container">
+<div class="tabs">
+<button class="tab-button active" data-tab="customize">Customize</button>
+<button class="tab-button" data-tab="preview">Preview</button>
+</div>
+<div class="tab-content active" id="customize">
+<div class="customize-grid">
+ Colors 
+<div class="customize-section">
+<h3>Colors</h3>
+<div class="control-group">
+<label for="linkColor">Link color</label>
+<div class="color-picker">
+<input id="linkColor" type="color" value="#3b82f6"/>
+<span id="linkColorValue">#3b82f6</span>
+</div>
+</div>
+<div class="control-group">
+<label for="visitedColor">Visited color</label>
+<div class="color-picker">
+<input id="visitedColor" type="color" value="#8b5cf6"/>
+<span id="visitedColorValue">#8b5cf6</span>
+</div>
+</div>
+</div>
+ Underline 
+<div class="customize-section">
+<h3>Underline</h3>
+<div class="control-group">
+<div class="switch">
+<input checked="" id="hasUnderline" type="checkbox"/>
+<label for="hasUnderline">Underline the link</label>
+</div>
+</div>
+<div id="underlineControls">
+<div class="control-group">
+<label for="underlineStyle">Underline style</label>
+<select id="underlineStyle">
+<option value="solid">Solid</option>
+<option value="dashed">Dashed</option>
+<option value="dotted">Dotted</option>
+<option value="wavy">Wavy</option>
+</select>
+</div>
+<div class="control-group">
+<label for="underlineThickness">Thickness (<span id="thicknessValue">1</span>px)</label>
+<input id="underlineThickness" max="5" min="1" step="1" type="range" value="1"/>
+</div>
+</div>
+</div>
+ Hover effect 
+<div class="customize-section">
+<h3>Hover effect</h3>
+<div class="control-group">
+<label for="hoverEffect">Effect type</label>
+<select id="hoverEffect">
+<option value="underline">Underline</option>
+<option value="color">Color change</option>
+<option value="background">Background color</option>
+<option value="scale">Scale</option>
+<option value="shadow">Shadow</option>
+</select>
+</div>
+</div>
+ Animation 
+<div class="customize-section">
+<h3>Animation</h3>
+<div class="control-group">
+<label for="transitionDuration">Transition duration (<span id="durationValue">0.3</span>s)</label>
+<input id="transitionDuration" max="1" min="0" step="0.1" type="range" value="0.3"/>
+</div>
+</div>
+</div>
+</div>
+<div class="tab-content" id="preview">
+<div class="preview-container">
+<div class="preview-section">
+<h3>Preview</h3>
+<div class="preview-text">
+<p>
+                  Here is an example of text with 
+                  <a class="preview-link" href="#" id="normalLink">a normal link</a> 
+                  et 
+                  <a class="preview-link visited" href="#" id="visitedLink">a visited link</a>.
+                </p>
+<p>
+                  Hover over 
+                  <a class="preview-link" href="#" id="hoverLink">this link</a> 
+                  to see the hover effect.
+                </p>
+</div>
+</div>
+<div class="code-section">
+<div class="code-header">
+<h3>Generated CSS code</h3>
+<button class="copy-button" id="copyButton">
+<svg class="clipboard-icon" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+<rect height="14" rx="2" ry="2" width="14" x="8" y="8"></rect>
+<path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+</svg>
+<span>Copy</span>
+</button>
+</div>
+<pre class="code-block" id="cssCode"></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="section-nav">
+<button class="continue-button" id="cssContinueBtn">
+          Continue reading
+          <svg class="chevron-down" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="m6 9 6 6 6-6"></path>
+</svg>
+</button>
+</div>
+</div>
+</section>
+<!-- Section 5: Conclusion -->
+<section class="section" id="conclusion">
+<div class="container">
+<h2 class="section-title">Conclusion</h2>
+<div class="conclusion-content">
+<p class="lead-text">
+    Our journey through the history of the blue link is coming to an end, but like any good link, it opens new doors.
+        </p>
+<p class="interactive-text">
+          A link is a 
+          <button class="interactive-word" data-word="passage">passage</button>. 
+          A 
+          <button class="interactive-word" data-word="fil">thread</button>. 
+          A 
+          <button class="interactive-word" data-word="porte">door</button>.
+        </p>
+<div class="word-animation" id="wordAnimation"></div>
+<p class="conclusion-text">
+    Since the earliest days of the web, the blue link has guided our navigation, creating paths through information. A simple but powerful convention that has shaped our digital experience and continues to evolve with us.
+        </p>
+<div class="final-message">
+<div class="final-line" id="finalLine"></div>
+<div class="final-text" id="finalText">The future of the link is still to be explored...</div>
+</div>
+</div>
+<button class="restart-button" id="restartButton">
+<svg class="arrow-left" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="m12 19-7-7 7-7"></path>
+<path d="M19 12H5"></path>
+</svg>
+        Back to the beginning
+      </button>
+</div>
+</section>
+<!-- Navigation buttons -->
+<button class="nav-button next-section" id="nextSectionBtn">
+<svg class="chevron-down" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="m6 9 6 6 6-6"></path>
+</svg>
+</button>
+<button class="nav-button top hidden" id="topButton">
+<svg class="chevron-up" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="m18 15-6-6-6 6"></path>
+</svg>
+</button>
+<footer>
+    © <span id="currentYear"></span> Why are hyperlinks blue? – A digital investigation
+  </footer>
+<script src="script.js"></script>
 </body>
 </html>
