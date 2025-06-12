@@ -1,151 +1,180 @@
 <!DOCTYPE html>
-
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Why are hyperlinks blue? – A digital investigation</title>
 <link href="styles.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
 <!-- Barre de progression -->
 <div class="progress-bar">
 <div class="progress-fill" id="progressFill"></div>
 </div>
+
 <!-- Section 1: Introduction -->
 <section class="section" id="intro">
 <div class="intro-container" id="introContainer">
-<!-- Motif de fond avec le mot "hyperlinks" répété -->
-<div class="background-pattern" id="backgroundPattern"></div>
-<!-- Contenu principal -->
-<div class="intro-content">
-<div class="intro-title">
+<!-- Textes d'arrière-plan qui bougent -->
+<div class="background-moving-text">
+  <div class="moving-text-line line-1">
+    hyperlinks hyperlinks hyperlinks hyperlinks hyperlinks hyperlinks
+  </div>
+  <div class="moving-text-line line-2">
+    hyperlinks hyperlinks hyperlinks hyperlinks hyperlinks hyperlinks
+  </div>
+  <div class="moving-text-line line-3">
+    hyperlinks hyperlinks hyperlinks hyperlinks hyperlinks hyperlinks
+  </div>
+  <div class="moving-text-line line-4">
+    hyperlinks hyperlinks hyperlinks hyperlinks hyperlinks hyperlinks
+  </div>
+  <div class="moving-text-line line-5">
+    hyperlinks hyperlinks hyperlinks hyperlinks hyperlinks hyperlinks
+  </div>
+  <div class="moving-text-line line-6">
+    hyperlinks hyperlinks hyperlinks hyperlinks hyperlinks hyperlinks
+  </div>
+</div>
+
+<!-- Contenu principal initial -->
+<div class="intro-content" id="mainIntroText">
+  <div class="intro-title">
 <h1 class="text-white">
-<span class="fade-in-1">Why are</span>
-<br/>
-<span class="font-bold fade-in-2">hyperlinks</span>
-<br/>
-<span class="font-bold fade-in-3">Blue</span>
-<span class="fade-in-4">?</span>
+  <span class="font-bold fade-in-1">Why are</span>
+  <br/>
+  <span class="line-2-group">
+    <span class="fade-in-2">hyperlinks&nbsp;</span>
+    <span class="font-bold fade-in-3">Blue</span>
+    <span class="font-bold fade-in-4">?</span>
+  </span>
 </h1>
+
+
+    </h1>
+  </div>
 </div>
-<div class="scroll-indicator">
-<button aria-label="Défiler vers le bas" class="scroll-button" id="introScrollButton">
-<svg class="chevron-down" fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
-<path d="m6 9 6 6 6-6"></path>
-</svg>
-</button>
+
+<!-- Texte d'introduction qui apparaît après -->
+<div class="welcome-intro hidden" id="welcomeIntro">
+  <div class="welcome-content">
+    <h1 class="welcome-title">Welcome</h1>
+    <p class="welcome-description">
+      Blue links are everywhere on the internet — but have you ever wondered why? <br>It feels as natural as grass being green. Yet, hyperlinks weren't always blue. <br>To understand how this color became a digital norm, we trace the story back to early browsers like Mosaic in 1993, and even before that, to a time before color screens. <br>Let's dive into the history behind the blue.
+    </p>
+    <div class="welcome-buttons">
+      <button class="btn btn-primary" onclick="scrollToNextSection()">Explore</button>
+    </div>
+  </div>
 </div>
+
+<!-- Indicateur de scroll -->
+<div class="scroll-indicator" id="scrollIndicator">
+  <button aria-label="Défiler vers le bas" class="scroll-button" id="introScrollButton">
+        <svg class="chevron-down" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"></svg>
+      <path d="m6 9 6 6 6-6"></path>
+    </svg>
+  </button>
 </div>
+
 <!-- Particules flottantes -->
 <div class="particles" id="particles"></div>
 </div>
 </section>
-<!-- Section 2: Timeline -->
-<section class="section" id="timeline">
-<div class="container">
-<h2 class="section-title">The history of the blue link</h2>
-<p class="section-description">
-    The internet is now part of every aspect of our lives, but have you ever noticed that links are blue? Let’s discover together the origin of this convention.
+
+<!-- Section 2: Cards Timeline -->
+<section class="section" id="cards-timeline">
+<div class="cards-timeline-container">
+  <!-- Header avec année dynamique -->
+  <header class="cards-header">
+    <div class="background-date-split">
+      <div class="background-date-left" id="yearLeft">19</div>
+      <div class="background-date-right" id="yearRight">64</div>
+    </div>
+    <div id="headerText">
+      <h1 class="header-title" id="headerTitle">The ancestors</h1>
+      <h2 class="header-subtitle" id="headerSubtitle">of the blue hyperlink</h2>
+    </div>
+  </header>
+
+  <!-- Conteneur des cartes -->
+  <div class="cards-wrapper">
+    <div class="cards-container" id="cardsContainer">
+      <!-- Les cartes seront générées par JavaScript -->
+    </div>
+  </div>
+
+  <!-- Indicateur de progression -->
+  <div class="progress-indicator" id="progressIndicator">
+    <!-- Les points de progression seront générés par JavaScript -->
+  </div>
+
+<!-- Modal -->
+<div class="modal" id="modal">
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <div class="modal-content" id="modalContent">
+    <!-- Mobile header -->
+    <div class="modal-header-mobile">
+      <h2 class="modal-title-mobile" id="modalTitleMobile"></h2>
+      <button class="modal-close-mobile" id="modalCloseMobile">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Desktop close button -->
+    <button class="modal-close-desktop" id="modalCloseDesktop">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <div class="modal-body">
+      <!-- Desktop title -->
+      <div class="modal-header-desktop">
+        <h2 class="modal-title-desktop" id="modalTitleDesktop"></h2>
+        <p class="modal-subtitle-desktop" id="modalSubtitleDesktop"></p>
+      </div>
+
+      <!-- Mobile subtitle -->
+      <p class="modal-subtitle-mobile" id="modalSubtitleMobile"></p>
+
+      <img class="modal-image" id="modalImage" alt="">
+
+      <p class="modal-description" id="modalDescription"></p>
+
+      <div class="modal-footer">
+        <p class="modal-hint">
+         <span class="mobile-hint">Tap outside or press X to close</span>
+<span class="desktop-hint">Click outside or press X to close</span>
       </p>
-<div class="timeline-container">
-<!-- Timeline line -->
-<div class="timeline-line"></div>
-<!-- Timeline events -->
-<div class="timeline-event" data-year="1964">
-<div class="timeline-marker"></div>
-<div class="timeline-content">
-<span class="timeline-year">1964</span>
-<h3 class="timeline-title">Project Xanadu</h3>
-<p class="timeline-description">
-    Ted Nelson’s Xanadu project introduced the concept of hypertext with links that visually connect two pages.
-            </p>
-<div class="timeline-image">
-<img alt="Illustration de Project Xanadu" src="images/1964 – Project Xanadu.webp"/>
+      </div>
+    </div>
+    <div class="modal-safe-area"></div>
+  </div>
 </div>
-</div>
-</div>
-<div class="timeline-event" data-year="1983">
-<div class="timeline-marker"></div>
-<div class="timeline-content">
-<span class="timeline-year">1983</span>
-<h3 class="timeline-title">HyperTIES</h3>
-<p class="timeline-description">
-    The HyperTIES system used cyan text on a black background. Perhaps an ancestor of the blue link.
-            </p>
-<div class="timeline-image">
-<img alt="Illustration de HyperTIES" src="images/1983 – HyperTIES system.webp"/>
-</div>
-</div>
-</div>
-<div class="timeline-event" data-year="1985">
-<div class="timeline-marker"></div>
-<div class="timeline-content">
-<span class="timeline-year">1985</span>
-<h3 class="timeline-title">Windows 1.0</h3>
-<p class="timeline-description">
-    Windows 1.0 introduced the first underlining for clickable elements and used dark blue for borders and titles.
-            </p>
-<div class="timeline-image">
-<img alt="Illustration de Windows 1.0" src="images/1985 – Windows 1.0.png"/>
-</div>
-</div>
-</div>
-<div class="timeline-event" data-year="1987">
-<div class="timeline-marker"></div>
-<div class="timeline-content">
-<span class="timeline-year">1987</span>
-<h3 class="timeline-title">WWW</h3>
-<p class="timeline-description">
-    The first version of the World Wide Web featured underlined links, but without any specific color.
-            </p>
-<div class="timeline-image">
-<img alt="Illustration de WWW" src="images/1987 – WorldWideWeb (WWW) .webp"/>
-</div>
-</div>
-</div>
-<div class="timeline-event" data-year="1993">
-<div class="timeline-marker"></div>
-<div class="timeline-content">
-<span class="timeline-year">1993</span>
-<h3 class="timeline-title">Mosaic</h3>
-<p class="timeline-description">
-    The Mosaic browser finally introduced the blue link! A convention that persists to this day.
-            </p>
-<div class="timeline-image">
-<img alt="Illustration de Mosaic" src="images/January, 1993 – Mosaic.webp"/>
-</div>
-</div>
-</div>
-<!-- Interactive link demo -->
-<div class="link-demo">
-<h3>Try the early browser experience:</h3>
-<p>Click on this link to see how it changes color:</p>
-<a class="demo-link" href="#" id="demoLink">A link like in 1993</a>
-<p class="demo-result hidden" id="demoResult">
-            You just saw the classic transition: black → blue → purple (visited)
-            <br/>
-<span class="reset-link">Click again to reset</span>
-</p>
-</div>
+
 <div class="section-nav">
-<button class="continue-button" id="timelineContinueBtn">
-            Continue reading
-            <svg class="chevron-down" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
-<path d="m6 9 6 6 6-6"></path>
-</svg>
-</button>
-</div>
-</div>
+  <button class="continue-button" id="cardsContinueBtn">
+
+  </button>
 </div>
 </section>
+
 <!-- Section 3: Perception Test -->
 <section class="section" id="perception-test">
 <div class="container">
 <h2 class="section-title">Why Blue?</h2>
 <p class="section-description">
-    Now that we know the history, let’s find out why blue was chosen. Does our brain perceive this color differently?
+    Now that we know the history, let's find out why blue was chosen. Does our brain perceive this color differently?
       </p>
 <div class="card">
 <div class="card-header">
@@ -199,11 +228,13 @@
 </div>
 </div>
 </section>
+
 <!-- Section 4: CSS Experience -->
 <section class="section" id="css-experience">
 <div class="container">
 <h2 class="section-title">The future of the link</h2>
-Now that we’ve explored why links are blue, it’s your turn to create. What do you imagine the future of the hyperlink to be?
+<p class="section-description">
+Now that we've explored why links are blue, it's your turn to create. What do you imagine the future of the hyperlink to be?
       </p>
 <div class="tabs-container">
 <div class="tabs">
@@ -212,7 +243,6 @@ Now that we’ve explored why links are blue, it’s your turn to create. What d
 </div>
 <div class="tab-content active" id="customize">
 <div class="customize-grid">
- Colors 
 <div class="customize-section">
 <h3>Colors</h3>
 <div class="control-group">
@@ -230,7 +260,6 @@ Now that we’ve explored why links are blue, it’s your turn to create. What d
 </div>
 </div>
 </div>
- Underline 
 <div class="customize-section">
 <h3>Underline</h3>
 <div class="control-group">
@@ -255,7 +284,6 @@ Now that we’ve explored why links are blue, it’s your turn to create. What d
 </div>
 </div>
 </div>
- Hover effect 
 <div class="customize-section">
 <h3>Hover effect</h3>
 <div class="control-group">
@@ -269,7 +297,6 @@ Now that we’ve explored why links are blue, it’s your turn to create. What d
 </select>
 </div>
 </div>
- Animation 
 <div class="customize-section">
 <h3>Animation</h3>
 <div class="control-group">
@@ -323,6 +350,7 @@ Now that we’ve explored why links are blue, it’s your turn to create. What d
 </div>
 </div>
 </section>
+
 <!-- Section 5: Conclusion -->
 <section class="section" id="conclusion">
 <div class="container">
@@ -357,6 +385,7 @@ Now that we’ve explored why links are blue, it’s your turn to create. What d
       </button>
 </div>
 </section>
+
 <!-- Navigation buttons -->
 <button class="nav-button next-section" id="nextSectionBtn">
 <svg class="chevron-down" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
@@ -368,9 +397,11 @@ Now that we’ve explored why links are blue, it’s your turn to create. What d
 <path d="m18 15-6-6-6 6"></path>
 </svg>
 </button>
+
 <footer>
     © <span id="currentYear"></span> Why are hyperlinks blue? – A digital investigation
   </footer>
+
 <script src="script.js"></script>
 </body>
 </html>
