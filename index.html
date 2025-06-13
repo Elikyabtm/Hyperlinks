@@ -175,8 +175,8 @@
 <h2 class="section-title">Why Blue?</h2>
 <p class="section-description">
     Now that we know the history, let's find out why blue was chosen. Does our brain perceive this color differently?
-      </p>
-<div class="card">
+</p>
+<div class="card perception-card">
 <div class="card-header">
 <h3 class="card-title">Visual perception test</h3>
 <p class="card-description">Click on the word "link" as fast as possible when it appears.</p>
@@ -184,10 +184,26 @@
 <div class="card-content">
 <div class="game-start" id="gameStart">
 <p>This test will measure your reaction time in spotting the word "link" in different colors.</p>
-<button class="start-button" id="startGameBtn">Start test</button>
+<div class="test-preview">
+  <div class="test-preview-item">
+    <span class="test-preview-word" style="color: var(--blue-500);">link</span>
+    <span class="test-preview-label">Blue</span>
+  </div>
+  <div class="test-preview-item">
+    <span class="test-preview-word" style="color: var(--red-500);">link</span>
+    <span class="test-preview-label">Red</span>
+  </div>
+  <div class="test-preview-item">
+    <span class="test-preview-word" style="color: var(--green-500);">link</span>
+    <span class="test-preview-label">Green</span>
+  </div>
+</div>
+<button class="start-button pulse-animation" id="startGameBtn">Start test</button>
 </div>
 <div class="countdown hidden" id="countdown">
-<span id="countdownNumber">3</span>
+<div class="countdown-circle">
+  <span id="countdownNumber">3</span>
+</div>
 <p>Get ready...</p>
 </div>
 <div class="game-area hidden" id="gameArea">
@@ -198,27 +214,35 @@
 </div>
 </div>
 <div class="words-grid" id="wordsGrid"></div>
+<div class="game-timer">
+  <div class="timer-bar" id="timerBar"></div>
+</div>
 </div>
 <div class="game-results hidden" id="gameResults">
 <h3>Results</h3>
 <div class="results-container">
 <div class="result-item">
+<div class="result-icon">⏱️</div>
 <p id="avgReactionTime">Average reaction time: -- ms</p>
 </div>
 <div class="result-item blue">
+<div class="result-icon">🔵</div>
 <p id="blueReactionTime">Average for blue links: -- ms</p>
 </div>
 <div class="result-item">
+<div class="result-icon">🎨</div>
 <p id="otherReactionTime">Average for other colors: -- ms</p>
 </div>
 <div class="result-item highlight">
+<div class="result-icon">💡</div>
 <p id="conclusion"></p>
 </div>
 </div>
+<button class="retry-button" id="retryTestBtn">Try again</button>
 </div>
 </div>
 <div class="card-footer">
-<button class="continue-button hidden" id="perceptionContinueBtn">
+<button class="continue-button" id="perceptionContinueBtn">
             Continue reading
             <svg class="chevron-down" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
 <path d="m6 9 6 6 6-6"></path>
@@ -235,7 +259,7 @@
 <h2 class="section-title">The future of the link</h2>
 <p class="section-description">
 Now that we've explored why links are blue, it's your turn to create. What do you imagine the future of the hyperlink to be?
-      </p>
+</p>
 <div class="tabs-container">
 <div class="tabs">
 <button class="tab-button active" data-tab="customize">Customize</button>
@@ -257,6 +281,13 @@ Now that we've explored why links are blue, it's your turn to create. What do yo
 <div class="color-picker">
 <input id="visitedColor" type="color" value="#8b5cf6"/>
 <span id="visitedColorValue">#8b5cf6</span>
+</div>
+</div>
+<div class="control-group">
+<label for="activeColor">Active/Tap color</label>
+<div class="color-picker">
+<input id="activeColor" type="color" value="#1d4ed8"/>
+<span id="activeColorValue">#1d4ed8</span>
 </div>
 </div>
 </div>
@@ -282,27 +313,58 @@ Now that we've explored why links are blue, it's your turn to create. What do yo
 <label for="underlineThickness">Thickness (<span id="thicknessValue">1</span>px)</label>
 <input id="underlineThickness" max="5" min="1" step="1" type="range" value="1"/>
 </div>
+<div class="control-group">
+<label for="underlineOffset">Offset (<span id="offsetValue">2</span>px)</label>
+<input id="underlineOffset" max="8" min="0" step="1" type="range" value="2"/>
+</div>
 </div>
 </div>
 <div class="customize-section">
-<h3>Hover effect</h3>
+<h3>Interaction</h3>
 <div class="control-group">
-<label for="hoverEffect">Effect type</label>
-<select id="hoverEffect">
-<option value="underline">Underline</option>
+<label for="tapEffect">Effect on click/tap</label>
+<select id="tapEffect">
 <option value="color">Color change</option>
+<option value="scale">Scale down</option>
+<option value="opacity">Opacity change</option>
 <option value="background">Background color</option>
-<option value="scale">Scale</option>
-<option value="shadow">Shadow</option>
+<option value="none">None</option>
 </select>
+</div>
+<div class="control-group">
+<label for="transitionDuration">Transition duration (<span id="durationValue">0.3</span>s)</label>
+<input id="transitionDuration" max="1" min="0" step="0.1" type="range" value="0.3"/>
 </div>
 </div>
 <div class="customize-section">
 <h3>Animation</h3>
 <div class="control-group">
-<label for="transitionDuration">Transition duration (<span id="durationValue">0.3</span>s)</label>
-<input id="transitionDuration" max="1" min="0" step="0.1" type="range" value="0.3"/>
+<div class="switch">
+<input id="hasAnimation" type="checkbox"/>
+<label for="hasAnimation">Add animation effect</label>
 </div>
+</div>
+<div id="animationControls" class="hidden">
+<div class="control-group">
+<label for="animationType">Animation type</label>
+<select id="animationType">
+<option value="pulse">Pulse</option>
+<option value="bounce">Bounce</option>
+<option value="shake">Shake</option>
+<option value="rainbow">Rainbow colors</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<div class="preset-styles">
+<h3>Quick presets</h3>
+<div class="preset-buttons">
+<button class="preset-button" data-preset="classic">Classic</button>
+<button class="preset-button" data-preset="modern">Modern</button>
+<button class="preset-button" data-preset="minimal">Minimal</button>
+<button class="preset-button" data-preset="bold">Bold</button>
+<button class="preset-button" data-preset="playful">Playful</button>
 </div>
 </div>
 </div>
@@ -314,14 +376,23 @@ Now that we've explored why links are blue, it's your turn to create. What do yo
 <p>
                   Here is an example of text with 
                   <a class="preview-link" href="#" id="normalLink">a normal link</a> 
-                  et 
+                  and 
                   <a class="preview-link visited" href="#" id="visitedLink">a visited link</a>.
                 </p>
 <p>
-                  Hover over 
-                  <a class="preview-link" href="#" id="hoverLink">this link</a> 
-                  to see the hover effect.
+                  Click on 
+                  <a class="preview-link" href="#" id="activeLink">this link</a> 
+                  to see the active effect.
                 </p>
+</div>
+<div class="preview-mobile-demo">
+  <div class="mobile-demo-header">
+    <div class="mobile-demo-title">Mobile view</div>
+    <div class="mobile-demo-icon">📱</div>
+  </div>
+  <div class="mobile-demo-content">
+    <p>This is how your link will look on a <a href="#" class="preview-link mobile">mobile device</a> when tapped.</p>
+  </div>
 </div>
 </div>
 <div class="code-section">
@@ -358,7 +429,8 @@ Now that we've explored why links are blue, it's your turn to create. What do yo
 <div class="conclusion-content">
 <p class="lead-text">
     Our journey through the history of the blue link is coming to an end, but like any good link, it opens new doors.
-        </p>
+</p>
+<div class="interactive-text-container">
 <p class="interactive-text">
           A link is a 
           <button class="interactive-word" data-word="passage">passage</button>. 
@@ -366,11 +438,12 @@ Now that we've explored why links are blue, it's your turn to create. What do yo
           <button class="interactive-word" data-word="fil">thread</button>. 
           A 
           <button class="interactive-word" data-word="porte">door</button>.
-        </p>
+</p>
 <div class="word-animation" id="wordAnimation"></div>
+</div>
 <p class="conclusion-text">
     Since the earliest days of the web, the blue link has guided our navigation, creating paths through information. A simple but powerful convention that has shaped our digital experience and continues to evolve with us.
-        </p>
+</p>
 <div class="final-message">
 <div class="final-line" id="finalLine"></div>
 <div class="final-text" id="finalText">The future of the link is still to be explored...</div>
@@ -385,6 +458,7 @@ Now that we've explored why links are blue, it's your turn to create. What do yo
       </button>
 </div>
 </section>
+
 
 <!-- Navigation buttons -->
 <button class="nav-button next-section" id="nextSectionBtn">

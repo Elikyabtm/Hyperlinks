@@ -18,7 +18,7 @@ const cardsData = [
     year: 1983,
     headerTitle: "The ancestors",
     headerSubtitle: "of the blue hyperlink",
-    description: "Used cyan hyperlinks on a black background a rare early use of color to distinguish links...",
+    description: "Used cyan hyperlinks on a black background to distinguish links...",
     modalDescription: "HyperTIES was an interactive system that introduced color to its interface, using cyan hyperlinks on a black background. It was part of an electronic journal used in academic and professional contexts. Although cyan isn't the same as dark blue, this marked one of the earliest uses of color to differentiate links. It's a clear step forward in making digital navigation more intuitive, even if the iconic hyperlink blue hadn't appeared just yet.",
     image: "images/1983 – HyperTIES system.webp",
   },
@@ -35,12 +35,12 @@ const cardsData = [
   },
   {
     id: 4,
-    title: "Apple HyperCard",
+    title: "HyperCard",
     subtitle: "Apple, 1987",
     year: 1987,
     headerTitle: "Visual Foundations",
     headerSubtitle: "of Hyperlinks",
-    description: "Hyperlinks between cards/apps, but still black and white. Aesthetic innovation without color...",
+    description: "Hyperlinks between cards/apps, but still black and white...",
     modalDescription: "Apple's HyperCard allowed users to build and navigate between cards filled with content. It featured clickable areas, similar to hyperlinks, though without color. These links were purely functional and relied on layout and interaction rather than color or underline. Although the design was visually refined, it didn't help users identify links at a glance—making it a key example of how interaction came before visual identity in hyperlink design.",
     image: "images/1987 – HyperCard.jpg",
   },
@@ -62,7 +62,7 @@ const cardsData = [
     year: 1990,
     headerTitle: "The Road",
     headerSubtitle: "to Interactivity",
-    description: "Crucial moment: Microsoft uses hyperlink blue for active selections in the interface...",
+    description: "Microsoft uses hyperlink blue for active selections in the interface...",
     modalDescription: "By this point, Microsoft had been using dark blue in its interfaces for several years. In Windows 3.1, we see blue used not only for layout but for interactive states—like when clicking on a drive or folder. This change suggests a growing link between the color blue and interactivity. It's not quite a blue hyperlink yet, but it's an important visual shift that predates Mosaic by about a year.",
     image: "images/April 6, 1992 – Windows 3.1 .webp",
   },
@@ -84,7 +84,7 @@ const cardsData = [
     year: 1993,
     headerTitle: "The Blue Hyperlink",
     headerSubtitle: "is Born",
-    description: "This is the official birth of the blue hyperlink.",
+    description: "This is the official birth of the blue hyperlink...",
     modalDescription: "Changed default anchor representations: blue and single solid underline for unvisited, dark purple and single dashed underline for visited. This was the first confirmed appearance of blue hyperlinks in a web browser. That exact color system—blue for unvisited, purple for visited—would go on to become the standard across the web.",
     image: "images/1987 – HyperCard.jpg",
   },
@@ -470,497 +470,891 @@ document.addEventListener("DOMContentLoaded", () => {
     new StackedCards()
   }
 
-  // Initialize perception test section
-  function initPerceptionTest() {
-    const startGameBtn = document.getElementById("startGameBtn")
-    const gameStart = document.getElementById("gameStart")
-    const countdown = document.getElementById("countdown")
-    const countdownNumber = document.getElementById("countdownNumber")
-    const gameArea = document.getElementById("gameArea")
-    const wordsGrid = document.getElementById("wordsGrid")
-    const roundInfo = document.getElementById("roundInfo")
-    const gameProgress = document.getElementById("gameProgress")
-    const gameResults = document.getElementById("gameResults")
-    const avgReactionTime = document.getElementById("avgReactionTime")
-    const blueReactionTime = document.getElementById("blueReactionTime")
-    const otherReactionTime = document.getElementById("otherReactionTime")
-    const conclusion = document.getElementById("conclusion")
-    const perceptionContinueBtn = document.getElementById("perceptionContinueBtn")
+ // Initialize perception test section - CORRIGÉ
+function initPerceptionTest() {
+  const startGameBtn = document.getElementById("startGameBtn")
+  const retryTestBtn = document.getElementById("retryTestBtn")
+  const gameStart = document.getElementById("gameStart")
+  const countdown = document.getElementById("countdown")
+  const countdownNumber = document.getElementById("countdownNumber")
+  const gameArea = document.getElementById("gameArea")
+  const wordsGrid = document.getElementById("wordsGrid")
+  const roundInfo = document.getElementById("roundInfo")
+  const gameProgress = document.getElementById("gameProgress")
+  const gameResults = document.getElementById("gameResults")
+  const avgReactionTime = document.getElementById("avgReactionTime")
+  const blueReactionTime = document.getElementById("blueReactionTime")
+  const otherReactionTime = document.getElementById("otherReactionTime")
+  const conclusion = document.getElementById("conclusion")
+  const perceptionContinueBtn = document.getElementById("perceptionContinueBtn")
+  const timerBar = document.getElementById("timerBar")
 
-    const colors = [
-      "var(--red-500)",
-      "var(--green-500)",
-      "var(--blue-500)",
-      "var(--yellow-500)",
-      "var(--purple-500)",
-      "var(--pink-500)",
-      "var(--orange-500)",
-      "var(--teal-500)",
-    ]
+  const colors = [
+    "var(--red-500)",
+    "var(--green-500)",
+    "var(--blue-500)",
+    "var(--yellow-500)",
+    "var(--purple-500)",
+    "var(--pink-500)",
+    "var(--orange-500)",
+    "var(--teal-500)",
+  ]
 
-    const colorClasses = [
-      "text-red-500",
-      "text-green-500",
-      "text-blue-500",
-      "text-yellow-500",
-      "text-purple-500",
-      "text-pink-500",
-      "text-orange-500",
-      "text-teal-500",
-    ]
+  const colorClasses = [
+    "text-red-500",
+    "text-green-500",
+    "text-blue-500",
+    "text-yellow-500",
+    "text-purple-500",
+    "text-pink-500",
+    "text-orange-500",
+    "text-teal-500",
+  ]
 
-    const words = ["text", "button", "page", "website", "menu", "image", "code", "screen"]
+  const words = ["text", "button", "page", "website", "menu", "image", "code", "screen"]
 
-    let rounds = []
-    let currentRound = 0
-    let reactionTimes = []
-    let startTime = 0
+  let rounds = []
+  let currentRound = 0
+  let reactionTimes = []
+  let startTime = 0
+  let timerInterval = null
 
-    // Generate rounds
-    function generateRounds() {
-      rounds = []
+  // Generate rounds - CORRIGÉ pour garantir que le mot "link" apparaît toujours
+  function generateRounds() {
+    rounds = []
 
-      for (let i = 0; i < 5; i++) {
-        const shuffledWords = [...words].sort(() => Math.random() - 0.5)
-        const shuffledColors = [...colors].sort(() => Math.random() - 0.5)
-        const shuffledColorClasses = [...colorClasses].sort(() => Math.random() - 0.5)
+    // Garantir au moins un lien bleu dans le test
+    let hasBlueLink = false
 
-        // Make sure the target word "link" is included
-        const targetIndex = Math.floor(Math.random() * 9) // 0-8
+    for (let i = 0; i < 5; i++) {
+      const shuffledWords = [...words].sort(() => Math.random() - 0.5)
+      const shuffledColors = [...colors].sort(() => Math.random() - 0.5)
+      const shuffledColorClasses = [...colorClasses].sort(() => Math.random() - 0.5)
 
-        const roundWords = shuffledWords.slice(0, 9).map((word, index) => {
-          return {
-            text: index === targetIndex ? "link" : word,
-            color: shuffledColors[index % shuffledColors.length],
-            colorClass: shuffledColorClasses[index % shuffledColorClasses.length],
-            isTarget: index === targetIndex,
-          }
-        })
+      // S'assurer que le mot "link" est inclus
+      const targetIndex = Math.floor(Math.random() * 9) // 0-8
 
-        rounds.push({
-          words: roundWords,
-          targetIndex,
-        })
+      // Forcer au moins un lien bleu si nous sommes au dernier tour et n'en avons pas encore eu
+      let targetColorIndex = Math.floor(Math.random() * shuffledColors.length)
+      if (i === 4 && !hasBlueLink) {
+        const blueIndex = shuffledColors.findIndex((color) => color === "var(--blue-500)")
+        targetColorIndex = blueIndex !== -1 ? blueIndex : 2 // Utiliser l'index 2 par défaut si bleu non trouvé
       }
+
+      if (shuffledColors[targetColorIndex % shuffledColors.length] === "var(--blue-500)") {
+        hasBlueLink = true
+      }
+
+      const roundWords = []
+
+      // Créer 9 mots pour la grille
+      for (let j = 0; j < 9; j++) {
+        if (j === targetIndex) {
+          // Toujours inclure le mot "link" à la position cible
+          roundWords.push({
+            text: "link",
+            color: shuffledColors[targetColorIndex % shuffledColors.length],
+            colorClass: shuffledColorClasses[targetColorIndex % shuffledColorClasses.length],
+            isTarget: true,
+          })
+        } else {
+          // Utiliser des mots aléatoires pour les autres positions
+          roundWords.push({
+            text: shuffledWords[j % shuffledWords.length],
+            color: shuffledColors[j % shuffledColors.length],
+            colorClass: shuffledColorClasses[j % shuffledColorClasses.length],
+            isTarget: false,
+          })
+        }
+      }
+
+      rounds.push({
+        words: roundWords,
+        targetIndex,
+      })
     }
 
-    // Start game
-    startGameBtn.addEventListener("click", () => {
-      gameStart.classList.add("hidden")
-      countdown.classList.remove("hidden")
+    // Vérification finale pour s'assurer qu'au moins un lien bleu est présent
+    if (!hasBlueLink) {
+      const randomRound = Math.floor(Math.random() * 5)
+      const targetIndex = rounds[randomRound].targetIndex
+      rounds[randomRound].words[targetIndex].color = "var(--blue-500)"
+      rounds[randomRound].words[targetIndex].colorClass = "text-blue-500"
+    }
+  }
 
-      let count = 3
-      countdownNumber.textContent = count
+  // Start game
+  startGameBtn.addEventListener("click", () => {
+    gameStart.classList.add("hidden")
+    countdown.classList.remove("hidden")
 
-      const timer = setInterval(() => {
-        count--
+    let count = 3
+    countdownNumber.textContent = count
 
-        if (count <= 0) {
-          clearInterval(timer)
-          countdown.classList.add("hidden")
-          startGame()
+    const timer = setInterval(() => {
+      count--
+
+      if (count <= 0) {
+        clearInterval(timer)
+        countdown.classList.add("hidden")
+        startGame()
+      } else {
+        countdownNumber.textContent = count
+      }
+    }, 1000)
+  })
+
+  // Retry test
+  retryTestBtn.addEventListener("click", () => {
+    gameResults.classList.add("hidden")
+    countdown.classList.remove("hidden")
+
+    let count = 3
+    countdownNumber.textContent = count
+
+    const timer = setInterval(() => {
+      count--
+
+      if (count <= 0) {
+        clearInterval(timer)
+        countdown.classList.add("hidden")
+        startGame()
+      } else {
+        countdownNumber.textContent = count
+      }
+    }, 1000)
+  })
+
+  // Start game
+  function startGame() {
+    generateRounds()
+    currentRound = 0
+    reactionTimes = []
+
+    gameArea.classList.remove("hidden")
+    displayRound()
+    startTime = Date.now()
+
+    // Start the timer bar animation
+    startTimerBar()
+  }
+
+  // Start timer bar animation
+  function startTimerBar() {
+    // Reset the timer bar
+    timerBar.style.width = "100%"
+    timerBar.style.backgroundColor = "var(--blue-500)"
+
+    // Clear any existing interval
+    if (timerInterval) clearInterval(timerInterval)
+
+    // Set a timeout to automatically move to next word if user doesn't click in time
+    const timeLimit = 5000 // 5 seconds
+    const decrementInterval = 50 // Update every 50ms
+    const decrementAmount = (decrementInterval / timeLimit) * 100
+
+    let timeRemaining = 100
+
+    timerInterval = setInterval(() => {
+      timeRemaining -= decrementAmount
+      timerBar.style.width = `${timeRemaining}%`
+
+      // Change color as time runs out
+      if (timeRemaining < 30) {
+        timerBar.style.backgroundColor = "var(--red-500)"
+      } else if (timeRemaining < 60) {
+        timerBar.style.backgroundColor = "var(--yellow-500)"
+      }
+
+      if (timeRemaining <= 0) {
+        clearInterval(timerInterval)
+        // If time runs out, record a slow reaction time and move to next round
+        const slowReactionTime = 5000 // 5 seconds (max time)
+        reactionTimes.push({
+          time: slowReactionTime,
+          isBlue: rounds[currentRound].words[rounds[currentRound].targetIndex].color === "var(--blue-500)",
+        })
+
+        if (currentRound < 4) {
+          currentRound++
+          displayRound()
+          startTime = Date.now()
+          startTimerBar()
         } else {
-          countdownNumber.textContent = count
+          gameArea.classList.add("hidden")
+          showResults()
         }
-      }, 1000)
+      }
+    }, decrementInterval)
+  }
+
+  // Display current round
+  function displayRound() {
+    roundInfo.textContent = `Round ${currentRound + 1}/5`
+    gameProgress.style.width = `${((currentRound + 1) / 5) * 100}%`
+
+    wordsGrid.innerHTML = ""
+
+    rounds[currentRound].words.forEach((word, index) => {
+      const button = document.createElement("button")
+      button.classList.add("word-button")
+      button.style.color = word.color
+
+      if (word.isTarget) {
+        button.classList.add("target")
+      }
+
+      button.textContent = word.text
+
+      button.addEventListener("click", () => {
+        if (word.isTarget) {
+          handleWordClick()
+        } else {
+          // Add a small penalty for wrong clicks
+          button.classList.add("wrong-click")
+          setTimeout(() => {
+            button.classList.remove("wrong-click")
+          }, 300)
+        }
+      })
+
+      wordsGrid.appendChild(button)
+    })
+  }
+
+  // Handle word click
+  function handleWordClick() {
+    const endTime = Date.now()
+    const reactionTime = endTime - startTime
+
+    // Clear the timer interval
+    if (timerInterval) clearInterval(timerInterval)
+
+    reactionTimes.push({
+      time: reactionTime,
+      isBlue: rounds[currentRound].words[rounds[currentRound].targetIndex].color === "var(--blue-500)",
     })
 
-    // Start game
-    function startGame() {
-      generateRounds()
-      currentRound = 0
-      reactionTimes = []
-
-      gameArea.classList.remove("hidden")
+    if (currentRound < 4) {
+      currentRound++
       displayRound()
       startTime = Date.now()
-    }
-
-    // Display current round
-    function displayRound() {
-      roundInfo.textContent = `Round ${currentRound + 1}/5`
-      gameProgress.style.width = `${((currentRound + 1) / 5) * 100}%`
-
-      wordsGrid.innerHTML = ""
-
-      rounds[currentRound].words.forEach((word, index) => {
-        const button = document.createElement("button")
-        button.classList.add("word-button")
-        button.style.color = word.color
-
-        if (word.isTarget) {
-          button.classList.add("target")
-        }
-
-        button.textContent = word.text
-
-        button.addEventListener("click", () => {
-          if (word.isTarget) {
-            handleWordClick()
-          }
-        })
-
-        wordsGrid.appendChild(button)
-      })
-    }
-
-    // Handle word click
-    function handleWordClick() {
-      const endTime = Date.now()
-      const reactionTime = endTime - startTime
-
-      reactionTimes.push({
-        time: reactionTime,
-        isBlue: rounds[currentRound].words[rounds[currentRound].targetIndex].colorClass === "text-blue-500",
-      })
-
-      if (currentRound < 4) {
-        currentRound++
-        displayRound()
-        startTime = Date.now()
-      } else {
-        gameArea.classList.add("hidden")
-        showResults()
-      }
-    }
-
-    // Show results
-    function showResults() {
-      const times = reactionTimes.map((rt) => rt.time)
-      const averageTime = Math.round(times.reduce((a, b) => a + b, 0) / times.length)
-
-      const blueTimes = reactionTimes.filter((rt) => rt.isBlue).map((rt) => rt.time)
-      const otherTimes = reactionTimes.filter((rt) => !rt.isBlue).map((rt) => rt.time)
-
-      const blueAverage = blueTimes.length > 0 ? Math.round(blueTimes.reduce((a, b) => a + b, 0) / blueTimes.length) : 0
-
-      const otherAverage =
-        otherTimes.length > 0 ? Math.round(otherTimes.reduce((a, b) => a + b, 0) / otherTimes.length) : 0
-
-      const isBlueFaster = blueAverage > 0 && otherAverage > 0 && blueAverage < otherAverage
-
-      avgReactionTime.textContent = `Average reaction time : ${averageTime} ms`
-
-      if (blueTimes.length > 0) {
-        blueReactionTime.textContent = `Average for blue links : ${blueAverage} ms`
-      }
-
-      if (otherTimes.length > 0) {
-        otherReactionTime.textContent = `Average for other colors : ${otherAverage} ms`
-      }
-
-      conclusion.textContent = isBlueFaster
-        ? "You spotted the blue links faster! Perhaps this is why blue has become the standard color for links."
-        : "Interesting! You spotted other colors faster than blue. But historically, blue was chosen because it stands out well and was rare in early websites."
-
-      gameResults.classList.remove("hidden")
-      perceptionContinueBtn.classList.remove("hidden")
+      startTimerBar()
+    } else {
+      gameArea.classList.add("hidden")
+      showResults()
     }
   }
 
-  // Initialize CSS Experience section
-  function initCssExperience() {
-    const tabButtons = document.querySelectorAll(".tab-button")
-    const tabContents = document.querySelectorAll(".tab-content")
+  // Show results
+  function showResults() {
+    const times = reactionTimes.map((rt) => rt.time)
+    const averageTime = Math.round(times.reduce((a, b) => a + b, 0) / times.length)
 
-    // Link color controls
-    const linkColor = document.getElementById("linkColor")
-    const linkColorValue = document.getElementById("linkColorValue")
-    const visitedColor = document.getElementById("visitedColor")
-    const visitedColorValue = document.getElementById("visitedColorValue")
+    const blueTimes = reactionTimes.filter((rt) => rt.isBlue).map((rt) => rt.time)
+    const otherTimes = reactionTimes.filter((rt) => !rt.isBlue).map((rt) => rt.time)
 
-    // Underline controls
-    const hasUnderline = document.getElementById("hasUnderline")
-    const underlineControls = document.getElementById("underlineControls")
-    const underlineStyle = document.getElementById("underlineStyle")
-    const underlineThickness = document.getElementById("underlineThickness")
-    const thicknessValue = document.getElementById("thicknessValue")
+    const blueAverage = blueTimes.length > 0 ? Math.round(blueTimes.reduce((a, b) => a + b, 0) / blueTimes.length) : 0
 
-    // Hover effect controls
-    const hoverEffect = document.getElementById("hoverEffect")
+    const otherAverage =
+      otherTimes.length > 0 ? Math.round(otherTimes.reduce((a, b) => a + b, 0) / otherTimes.length) : 0
 
-    // Animation controls
-    const transitionDuration = document.getElementById("transitionDuration")
-    const durationValue = document.getElementById("durationValue")
+    const isBlueFaster = blueAverage > 0 && otherAverage > 0 && blueAverage < otherAverage
 
-    // Preview elements
-    const normalLink = document.getElementById("normalLink")
-    const visitedLink = document.getElementById("visitedLink")
-    const hoverLink = document.getElementById("hoverLink")
+    avgReactionTime.textContent = `Average reaction time: ${averageTime} ms`
 
-    // Code display
-    const cssCode = document.getElementById("cssCode")
-    const copyButton = document.getElementById("copyButton")
-
-    // Tab switching
-    tabButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const tab = button.getAttribute("data-tab")
-
-        tabButtons.forEach((btn) => btn.classList.remove("active"))
-        tabContents.forEach((content) => content.classList.remove("active"))
-
-        button.classList.add("active")
-        document.getElementById(tab).classList.add("active")
-
-        if (tab === "preview") {
-          updatePreview()
-        }
-      })
-    })
-
-    // Update color values
-    linkColor.addEventListener("input", () => {
-      linkColorValue.textContent = linkColor.value
-      updatePreview()
-    })
-
-    visitedColor.addEventListener("input", () => {
-      visitedColorValue.textContent = visitedColor.value
-      updatePreview()
-    })
-
-    // Toggle underline controls
-    hasUnderline.addEventListener("change", () => {
-      underlineControls.style.display = hasUnderline.checked ? "block" : "none"
-      updatePreview()
-    })
-
-    // Update thickness value
-    underlineThickness.addEventListener("input", () => {
-      thicknessValue.textContent = underlineThickness.value
-      updatePreview()
-    })
-
-    // Update duration value
-    transitionDuration.addEventListener("input", () => {
-      durationValue.textContent = transitionDuration.value
-      updatePreview()
-    })
-
-    // Update preview on any change
-    ;[underlineStyle, hoverEffect].forEach((control) => {
-      control.addEventListener("change", updatePreview)
-    })
-
-    // Update preview
-    function updatePreview() {
-      const linkStyles = {
-        color: linkColor.value,
-        textDecoration: hasUnderline.checked ? `${underlineStyle.value} underline` : "none",
-        textDecorationThickness: `${underlineThickness.value}px`,
-        transition: `all ${transitionDuration.value}s ease`,
-      }
-
-      const visitedStyles = {
-        ...linkStyles,
-        color: visitedColor.value,
-      }
-
-      // Apply styles to preview links
-      applyStyles(normalLink, linkStyles)
-      applyStyles(visitedLink, visitedStyles)
-      applyStyles(hoverLink, linkStyles)
-
-      // Generate hover styles
-      let hoverStyles = ""
-
-      switch (hoverEffect.value) {
-        case "underline":
-          hoverStyles = "text-decoration: underline;"
-          break
-        case "color":
-          hoverStyles = "color: var(--red-500);"
-          break
-        case "background":
-          hoverStyles = `
-              background-color: var(--blue-100);
-              padding: 0 4px;
-              border-radius: 2px;
-            `
-          break
-        case "scale":
-          hoverStyles = "transform: scale(1.05);"
-          break
-        case "shadow":
-          hoverStyles = "text-shadow: 0 0 2px rgba(59, 130, 246, 0.5);"
-          break
-      }
-
-      // Add hover effect
-      const styleElement = document.getElementById("hover-style") || document.createElement("style")
-      styleElement.id = "hover-style"
-      styleElement.textContent = `
-          #hoverLink:hover {
-            ${hoverStyles}
-          }
-        `
-
-      if (!document.getElementById("hover-style")) {
-        document.head.appendChild(styleElement)
-      }
-
-      // Generate CSS code
-      const code = generateCssCode(linkStyles, visitedStyles, hoverEffect.value)
-      cssCode.textContent = code
+    if (blueTimes.length > 0) {
+      blueReactionTime.textContent = `Average for blue links: ${blueAverage} ms`
     }
 
-    // Apply styles to element
-    function applyStyles(element, styles) {
-      Object.assign(element.style, styles)
+    if (otherTimes.length > 0) {
+      otherReactionTime.textContent = `Average for other colors: ${otherAverage} ms`
     }
 
-    // Generate CSS code
-    function generateCssCode(linkStyles, visitedStyles, hoverEffectValue) {
-      let hoverStyles = ""
+    conclusion.textContent = isBlueFaster
+      ? "You spotted the blue links faster! Perhaps this is why blue has become the standard color for links."
+      : "Interesting! You spotted other colors faster than blue. But historically, blue was chosen because it stands out well and was rare in early websites."
 
-      switch (hoverEffectValue) {
-        case "underline":
-          hoverStyles = "  text-decoration: underline;"
-          break
-        case "color":
-          hoverStyles = "  color: #ef4444;"
-          break
-        case "background":
-          hoverStyles = `  background-color: #dbeafe;
-    padding: 0 4px;
-    border-radius: 2px;`
-          break
-        case "scale":
-          hoverStyles = "  transform: scale(1.05);"
-          break
-        case "shadow":
-          hoverStyles = "  text-shadow: 0 0 2px rgba(59, 130, 246, 0.5);"
-          break
-      }
+    gameResults.classList.remove("hidden")
+    perceptionContinueBtn.classList.remove("hidden")
 
-      return `/* Style de base du lien */
-  a {
-    color: ${linkStyles.color};
-    text-decoration: ${linkStyles.textDecoration};
-    text-decoration-thickness: ${linkStyles.textDecorationThickness};
-    transition: ${linkStyles.transition};
-  }
-  
-  /* Style au survol */
-  a:hover {
-  ${hoverStyles}
-  }
-  
-  /* Style des liens visités */
-  a:visited {
-    color: ${visitedStyles.color};
-  }`
-    }
-
-    // Copy to clipboard
-    copyButton.addEventListener("click", () => {
-      navigator.clipboard.writeText(cssCode.textContent)
-
-      copyButton.classList.add("copied")
-      copyButton.querySelector("span").textContent = "Copié !"
-
+    // Animate the results with a staggered reveal
+    const resultItems = document.querySelectorAll(".result-item")
+    resultItems.forEach((item, index) => {
+      item.style.opacity = "0"
+      item.style.transform = "translateY(20px)"
       setTimeout(() => {
-        copyButton.classList.remove("copied")
-        copyButton.querySelector("span").textContent = "Copier"
-      }, 2000)
+        item.style.transition = "all 0.5s ease"
+        item.style.opacity = "1"
+        item.style.transform = "translateY(0)"
+      }, 300 * index)
     })
+  }
+}
 
-    // Initialize preview
+// Initialize CSS Experience section - CORRIGÉ
+function initCssExperience() {
+  const tabButtons = document.querySelectorAll(".tab-button")
+  const tabContents = document.querySelectorAll(".tab-content")
+
+  // Link color controls
+  const linkColor = document.getElementById("linkColor")
+  const linkColorValue = document.getElementById("linkColorValue")
+  const visitedColor = document.getElementById("visitedColor")
+  const visitedColorValue = document.getElementById("visitedColorValue")
+  const activeColor = document.getElementById("activeColor")
+  const activeColorValue = document.getElementById("activeColorValue")
+
+  // Underline controls
+  const hasUnderline = document.getElementById("hasUnderline")
+  const underlineControls = document.getElementById("underlineControls")
+  const underlineStyle = document.getElementById("underlineStyle")
+  const underlineThickness = document.getElementById("underlineThickness")
+  const thicknessValue = document.getElementById("thicknessValue")
+  const underlineOffset = document.getElementById("underlineOffset")
+  const offsetValue = document.getElementById("offsetValue")
+
+  // Interaction controls
+  const tapEffect = document.getElementById("tapEffect")
+
+  // Animation controls
+  const transitionDuration = document.getElementById("transitionDuration")
+  const durationValue = document.getElementById("durationValue")
+  const hasAnimation = document.getElementById("hasAnimation")
+  const animationControls = document.getElementById("animationControls")
+  const animationType = document.getElementById("animationType")
+
+  // Preview elements
+  const normalLink = document.getElementById("normalLink")
+  const visitedLink = document.getElementById("visitedLink")
+  const activeLink = document.getElementById("activeLink")
+  const mobileLink = document.querySelector(".preview-link.mobile")
+
+  // Code display
+  const cssCode = document.getElementById("cssCode")
+  const copyButton = document.getElementById("copyButton")
+
+  // Preset buttons
+  const presetButtons = document.querySelectorAll(".preset-button")
+
+  // Tab switching
+  tabButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const tab = button.getAttribute("data-tab")
+
+      tabButtons.forEach((btn) => btn.classList.remove("active"))
+      tabContents.forEach((content) => content.classList.remove("active"))
+
+      button.classList.add("active")
+      document.getElementById(tab).classList.add("active")
+
+      if (tab === "preview") {
+        updatePreview()
+      }
+    })
+  })
+
+  // Update color values
+  linkColor.addEventListener("input", () => {
+    linkColorValue.textContent = linkColor.value
+    updatePreview()
+  })
+
+  visitedColor.addEventListener("input", () => {
+    visitedColorValue.textContent = visitedColor.value
+    updatePreview()
+  })
+
+  activeColor.addEventListener("input", () => {
+    activeColorValue.textContent = activeColor.value
+    updatePreview()
+  })
+
+  // Toggle underline controls
+  hasUnderline.addEventListener("change", () => {
+    underlineControls.style.display = hasUnderline.checked ? "block" : "none"
+    updatePreview()
+  })
+
+  // Update thickness value
+  underlineThickness.addEventListener("input", () => {
+    thicknessValue.textContent = underlineThickness.value
+    updatePreview()
+  })
+
+  // Update offset value
+  underlineOffset.addEventListener("input", () => {
+    offsetValue.textContent = underlineOffset.value
+    updatePreview()
+  })
+
+  // Update duration value
+  transitionDuration.addEventListener("input", () => {
+    durationValue.textContent = transitionDuration.value
+    updatePreview()
+  })
+
+  // Toggle animation controls
+  hasAnimation.addEventListener("change", () => {
+    animationControls.classList.toggle("hidden", !hasAnimation.checked)
+    updatePreview()
+  })
+
+  // Update preview on any change
+  ;[underlineStyle, tapEffect, animationType].forEach((control) => {
+    control.addEventListener("change", updatePreview)
+  })
+
+  // Preset buttons
+  presetButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const preset = button.getAttribute("data-preset")
+      applyPreset(preset)
+    })
+  })
+
+  // Apply preset styles
+  function applyPreset(preset) {
+    switch (preset) {
+      case "classic":
+        linkColor.value = "#0000EE"
+        linkColorValue.textContent = "#0000EE"
+        visitedColor.value = "#551A8B"
+        visitedColorValue.textContent = "#551A8B"
+        activeColor.value = "#FF0000"
+        activeColorValue.textContent = "#FF0000"
+        hasUnderline.checked = true
+        underlineControls.style.display = "block"
+        underlineStyle.value = "solid"
+        underlineThickness.value = "1"
+        thicknessValue.textContent = "1"
+        underlineOffset.value = "0"
+        offsetValue.textContent = "0"
+        tapEffect.value = "color"
+        transitionDuration.value = "0"
+        durationValue.textContent = "0"
+        hasAnimation.checked = false
+        animationControls.classList.add("hidden")
+        break
+
+      case "modern":
+        linkColor.value = "#2563eb"
+        linkColorValue.textContent = "#2563eb"
+        visitedColor.value = "#7c3aed"
+        visitedColorValue.textContent = "#7c3aed"
+        activeColor.value = "#1d4ed8"
+        activeColorValue.textContent = "#1d4ed8"
+        hasUnderline.checked = false
+        underlineControls.style.display = "none"
+        tapEffect.value = "color"
+        transitionDuration.value = "0.3"
+        durationValue.textContent = "0.3"
+        hasAnimation.checked = false
+        animationControls.classList.add("hidden")
+        break
+
+      case "minimal":
+        linkColor.value = "#111827"
+        linkColorValue.textContent = "#111827"
+        visitedColor.value = "#374151"
+        visitedColorValue.textContent = "#374151"
+        activeColor.value = "#2563eb"
+        activeColorValue.textContent = "#2563eb"
+        hasUnderline.checked = false
+        underlineControls.style.display = "none"
+        tapEffect.value = "color"
+        transitionDuration.value = "0.2"
+        durationValue.textContent = "0.2"
+        hasAnimation.checked = false
+        animationControls.classList.add("hidden")
+        break
+
+      case "bold":
+        linkColor.value = "#2563eb"
+        linkColorValue.textContent = "#2563eb"
+        visitedColor.value = "#7c3aed"
+        visitedColorValue.textContent = "#7c3aed"
+        activeColor.value = "#ffffff"
+        activeColorValue.textContent = "#ffffff"
+        hasUnderline.checked = true
+        underlineControls.style.display = "block"
+        underlineStyle.value = "solid"
+        underlineThickness.value = "3"
+        thicknessValue.textContent = "3"
+        underlineOffset.value = "4"
+        offsetValue.textContent = "4"
+        tapEffect.value = "background"
+        transitionDuration.value = "0.3"
+        durationValue.textContent = "0.3"
+        hasAnimation.checked = false
+        animationControls.classList.add("hidden")
+        break
+
+      case "playful":
+        linkColor.value = "#ec4899"
+        linkColorValue.textContent = "#ec4899"
+        visitedColor.value = "#8b5cf6"
+        visitedColorValue.textContent = "#8b5cf6"
+        activeColor.value = "#f97316"
+        activeColorValue.textContent = "#f97316"
+        hasUnderline.checked = true
+        underlineControls.style.display = "block"
+        underlineStyle.value = "wavy"
+        underlineThickness.value = "2"
+        thicknessValue.textContent = "2"
+        underlineOffset.value = "5"
+        offsetValue.textContent = "5"
+        tapEffect.value = "scale"
+        transitionDuration.value = "0.5"
+        durationValue.textContent = "0.5"
+        hasAnimation.checked = true
+        animationControls.classList.remove("hidden")
+        animationType.value = "rainbow"
+        break
+    }
+
     updatePreview()
   }
 
-  // Initialize conclusion section
-  function initConclusion() {
-    const interactiveWords = document.querySelectorAll(".interactive-word")
-    const wordAnimation = document.getElementById("wordAnimation")
-    const finalLine = document.getElementById("finalLine")
-    const finalText = document.getElementById("finalText")
+  // Update preview
+  function updatePreview() {
+    const linkStyles = {
+      color: linkColor.value,
+      textDecoration: hasUnderline.checked ? `${underlineStyle.value} underline` : "none",
+      textDecorationThickness: `${underlineThickness.value}px`,
+      textUnderlineOffset: `${underlineOffset.value}px`,
+      transition: `all ${transitionDuration.value}s ease`,
+    }
 
-    // Word animations
-    interactiveWords.forEach((word) => {
-      word.addEventListener("click", () => {
-        const wordType = word.getAttribute("data-word")
+    const visitedStyles = {
+      ...linkStyles,
+      color: visitedColor.value,
+    }
 
-        // Clear previous animation
-        wordAnimation.innerHTML = ""
+    const activeStyles = {
+      ...linkStyles,
+      color: activeColor.value,
+    }
 
-        // Create animation based on word type
-        switch (wordType) {
-          case "passage":
-            const passageAnimation = document.createElement("div")
-            passageAnimation.classList.add("passage-animation")
+    // Apply styles to preview links
+    applyStyles(normalLink, linkStyles)
+    applyStyles(visitedLink, visitedStyles)
+    applyStyles(activeLink, linkStyles)
+    applyStyles(mobileLink, linkStyles)
 
-            const passageLine = document.createElement("div")
-            passageLine.classList.add("passage-line")
-
-            passageAnimation.appendChild(passageLine)
-            wordAnimation.appendChild(passageAnimation)
-            break
-
-          case "fil":
-            const filAnimation = document.createElement("div")
-            filAnimation.classList.add("fil-animation")
-
-            filAnimation.innerHTML = `
-                <svg class="fil-svg" viewBox="0 0 100 20">
-                  <path class="fil-path" d="M10,10 Q50,0 90,10" />
-                  <circle class="fil-circle" cx="10" cy="10" r="3" />
-                  <circle class="fil-circle" cx="90" cy="10" r="3" />
-                </svg>
-              `
-
-            wordAnimation.appendChild(filAnimation)
-            break
-
-          case "porte":
-            const porteAnimation = document.createElement("div")
-            porteAnimation.classList.add("porte-animation")
-
-            const porteContainer = document.createElement("div")
-            porteContainer.classList.add("porte-container")
-
-            const porteDoor = document.createElement("div")
-            porteDoor.classList.add("porte-door", "porte-door-moving")
-
-            const porteFrame = document.createElement("div")
-            porteFrame.classList.add("porte-frame")
-
-            porteContainer.appendChild(porteDoor)
-            porteContainer.appendChild(porteFrame)
-            porteAnimation.appendChild(porteContainer)
-
-            wordAnimation.appendChild(porteAnimation)
-            break
-        }
-
-        // Remove animation after delay
-        setTimeout(() => {
-          wordAnimation.innerHTML = ""
-        }, 2000)
-      })
+    // Simulate tap effect for preview
+    activeLink.addEventListener("click", (e) => {
+      e.preventDefault()
+      simulateTapEffect(activeLink)
     })
 
-    // Final message animation
-    const observeFinal = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              finalLine.classList.add("animate")
+    mobileLink.addEventListener("click", (e) => {
+      e.preventDefault()
+      simulateTapEffect(mobileLink)
+    })
 
-              setTimeout(() => {
-                finalText.classList.add("animate")
-              }, 2000)
-            }, 1000)
-          }
+    // Generate animation styles
+    let animationStyles = ""
+    if (hasAnimation.checked) {
+      switch (animationType.value) {
+        case "pulse":
+          animationStyles = "animation: link-pulse 2s infinite;"
+          break
+        case "bounce":
+          animationStyles = "animation: link-bounce 1s infinite;"
+          break
+        case "shake":
+          animationStyles = "animation: link-shake 0.5s infinite;"
+          break
+        case "rainbow":
+          animationStyles = "animation: link-rainbow 3s infinite;"
+          break
+      }
+    }
+
+    // Create animation keyframes if needed
+    let keyframes = ""
+    if (hasAnimation.checked) {
+      switch (animationType.value) {
+        case "pulse":
+          keyframes = `
+            @keyframes link-pulse {
+              0%, 100% { opacity: 1; }
+              50% { opacity: 0.6; }
+            }
+          `
+          break
+        case "bounce":
+          keyframes = `
+            @keyframes link-bounce {
+              0%, 100% { transform: translateY(0); }
+              50% { transform: translateY(-5px); }
+            }
+          `
+          break
+        case "shake":
+          keyframes = `
+            @keyframes link-shake {
+              0%, 100% { transform: translateX(0); }
+              25% { transform: translateX(-2px); }
+              75% { transform: translateX(2px); }
+            }
+          `
+          break
+        case "rainbow":
+          keyframes = `
+            @keyframes link-rainbow {
+              0% { color: #ff0000; }
+              16% { color: #ff8000; }
+              33% { color: #ffff00; }
+              50% { color: #00ff00; }
+              66% { color: #00ffff; }
+              83% { color: #0000ff; }
+              100% { color: #ff00ff; }
+            }
+          `
+          break
+      }
+    }
+
+    // Add animation styles
+    const styleElement = document.getElementById("hover-style") || document.createElement("style")
+    styleElement.id = "hover-style"
+
+    styleElement.textContent = `
+        ${keyframes}
+        .preview-link {
+          ${animationStyles}
+        }
+      `
+
+    if (!document.getElementById("hover-style")) {
+      document.head.appendChild(styleElement)
+    }
+
+    // Generate CSS code
+    const code = generateCssCode(linkStyles, visitedStyles, activeStyles, animationStyles)
+    cssCode.textContent = code
+  }
+
+  // Simulate tap effect for preview
+  function simulateTapEffect(element) {
+    const originalStyles = { ...element.style }
+
+    // Apply tap effect
+    switch (tapEffect.value) {
+      case "color":
+        element.style.color = activeColor.value
+        break
+      case "scale":
+        element.style.transform = "scale(0.95)"
+        break
+      case "opacity":
+        element.style.opacity = "0.7"
+        break
+      case "background":
+        element.style.backgroundColor = `${activeColor.value}33` // 20% opacity
+        element.style.padding = "0 4px"
+        element.style.borderRadius = "4px"
+        break
+    }
+
+    // Reset after animation
+    setTimeout(
+      () => {
+        Object.keys(originalStyles).forEach((key) => {
+          element.style[key] = originalStyles[key]
         })
       },
-      { threshold: 0.8 },
+      Number.parseFloat(transitionDuration.value) * 1000 || 300,
     )
-
-    observeFinal.observe(document.querySelector(".final-message"))
   }
+
+  // Apply styles to element
+  function applyStyles(element, styles) {
+    Object.assign(element.style, styles)
+  }
+
+  // Generate CSS code - CORRIGÉ pour enlever le texte en français
+  function generateCssCode(linkStyles, visitedStyles, activeStyles, animationStyles) {
+    let animationCode = ""
+    if (animationStyles) {
+      animationCode = `
+/* Link animation */
+@keyframes link-${animationType.value} {
+${
+  animationType.value === "pulse"
+    ? "  0%, 100% { opacity: 1; }\n  50% { opacity: 0.6; }"
+    : animationType.value === "bounce"
+      ? "  0%, 100% { transform: translateY(0); }\n  50% { transform: translateY(-5px); }"
+      : animationType.value === "shake"
+        ? "  0%, 100% { transform: translateX(0); }\n  25% { transform: translateX(-2px); }\n  75% { transform: translateX(2px); }"
+        : "  0% { color: #ff0000; }\n  16% { color: #ff8000; }\n  33% { color: #ffff00; }\n  50% { color: #00ff00; }\n  66% { color: #00ffff; }\n  83% { color: #0000ff; }\n  100% { color: #ff00ff; }"
+}
+}`
+    }
+
+    // Generate tap effect code
+    let tapEffectCode = ""
+    switch (tapEffect.value) {
+      case "color":
+        tapEffectCode = `color: ${activeStyles.color};`
+        break
+      case "scale":
+        tapEffectCode = "transform: scale(0.95);"
+        break
+      case "opacity":
+        tapEffectCode = "opacity: 0.7;"
+        break
+      case "background":
+        tapEffectCode = `
+  background-color: ${activeStyles.color}33;
+  padding: 0 4px;
+  border-radius: 4px;`
+        break
+      case "none":
+        tapEffectCode = "/* No tap effect */"
+        break
+    }
+
+    return `/* Base link style */
+a {
+  color: ${linkStyles.color};
+  text-decoration: ${linkStyles.textDecoration};
+  text-decoration-thickness: ${linkStyles.textDecorationThickness};
+  text-underline-offset: ${linkStyles.textUnderlineOffset};
+  transition: ${linkStyles.transition};${
+    animationStyles
+      ? `
+  ${animationStyles.replace("animation:", "animation:")}`
+      : ""
+  }
+}
+
+/* Visited link style */
+a:visited {
+  color: ${visitedStyles.color};
+}
+
+/* Active link style (when clicked/tapped) */
+a:active {
+${tapEffectCode
+  .split(";")
+  .filter((s) => s.trim())
+  .map((s) => "  " + s.trim() + ";")
+  .join("\n")}
+}${animationCode ? "\n\n" + animationCode : ""}`
+  }
+
+  // Copy to clipboard
+  copyButton.addEventListener("click", () => {
+    navigator.clipboard.writeText(cssCode.textContent)
+
+    copyButton.classList.add("copied")
+    copyButton.querySelector("span").textContent = "Copied!"
+
+    setTimeout(() => {
+      copyButton.classList.remove("copied")
+      copyButton.querySelector("span").textContent = "Copy"
+    }, 2000)
+  })
+
+  // Initialize preview
+  updatePreview()
+}
+
+// Initialize conclusion section - CORRIGÉ (sans réseaux sociaux)
+function initConclusion() {
+  const interactiveWords = document.querySelectorAll(".interactive-word")
+  const wordAnimation = document.getElementById("wordAnimation")
+  const finalLine = document.getElementById("finalLine")
+  const finalText = document.getElementById("finalText")
+
+  // Word animations
+  interactiveWords.forEach((word) => {
+    word.addEventListener("click", () => {
+      const wordType = word.getAttribute("data-word")
+
+      // Clear previous animation
+      wordAnimation.innerHTML = ""
+
+      // Create animation based on word type
+      switch (wordType) {
+        case "passage":
+          const passageAnimation = document.createElement("div")
+          passageAnimation.classList.add("passage-animation")
+
+          const passageLine = document.createElement("div")
+          passageLine.classList.add("passage-line")
+
+          passageAnimation.appendChild(passageLine)
+          wordAnimation.appendChild(passageAnimation)
+          break
+
+        case "fil":
+          const filAnimation = document.createElement("div")
+          filAnimation.classList.add("fil-animation")
+
+          filAnimation.innerHTML = `
+              <svg class="fil-svg" viewBox="0 0 100 20">
+                <path class="fil-path" d="M10,10 Q50,0 90,10" />
+                <circle class="fil-circle" cx="10" cy="10" r="3" />
+                <circle class="fil-circle" cx="90" cy="10" r="3" />
+              </svg>
+            `
+
+          wordAnimation.appendChild(filAnimation)
+          break
+
+        case "porte":
+          const porteAnimation = document.createElement("div")
+          porteAnimation.classList.add("porte-animation")
+
+          const porteContainer = document.createElement("div")
+          porteContainer.classList.add("porte-container")
+
+          const porteDoor = document.createElement("div")
+          porteDoor.classList.add("porte-door", "porte-door-moving")
+
+          const porteFrame = document.createElement("div")
+          porteFrame.classList.add("porte-frame")
+
+          porteContainer.appendChild(porteDoor)
+          porteContainer.appendChild(porteFrame)
+          porteAnimation.appendChild(porteContainer)
+
+          wordAnimation.appendChild(porteAnimation)
+          break
+      }
+
+      // Remove animation after delay
+      setTimeout(() => {
+        wordAnimation.innerHTML = ""
+      }, 2000)
+    })
+  })
+
+  // Final message animation
+  const observeFinal = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            finalLine.classList.add("animate")
+
+            setTimeout(() => {
+              finalText.classList.add("animate")
+            }, 2000)
+          }, 1000)
+        }
+      })
+    },
+    { threshold: 0.8 },
+  )
+
+  observeFinal.observe(document.querySelector(".final-message"))
+}
+
 
   // Initialize all sections
   initIntro()
@@ -982,4 +1376,3 @@ document.addEventListener("DOMContentLoaded", () => {
     cardsTimelineSection.scrollIntoView({ behavior: "smooth" })
   }
 })
-
