@@ -1,4 +1,3 @@
-// Data for cards
 const cardsData = [
   {
     id: 1,
@@ -8,8 +7,12 @@ const cardsData = [
     headerTitle: "The ancestors",
     headerSubtitle: "of the blue hyperlink",
     description: "The first concept to visually connect two pieces of information...",
-    modalDescription: "Project Xanadu was one of the first systems to create visual connections between documents. Instead of colored text or buttons, it used lines to show a link between different pieces of information. These lines weren't clickable like modern hyperlinks, but they introduced the concept of connecting digital documents in a visual, structured way. This was a major leap toward what would eventually become hypertext as we know it.",
+    modalDescription: `<p>Project Xanadu was one of the first systems to create visual connections between documents.</p>
+<p>Instead of colored text or buttons, it used lines to show a link between different pieces of information.</p>
+<p>These lines weren't clickable like modern hyperlinks, but they introduced the concept of connecting digital documents in a visual, structured way.</p>
+<p>This was a major leap toward what would eventually become hypertext as we know it.</p>`,
     image: "images/1964 – Project Xanadu.webp",
+    downloadFile: "Projet Xanadu.png"
   },
   {
     id: 2,
@@ -19,8 +22,12 @@ const cardsData = [
     headerTitle: "The ancestors",
     headerSubtitle: "of the blue hyperlink",
     description: "Used cyan hyperlinks on a black background to distinguish links...",
-    modalDescription: "HyperTIES was an interactive system that introduced color to its interface, using cyan hyperlinks on a black background. It was part of an electronic journal used in academic and professional contexts. Although cyan isn't the same as dark blue, this marked one of the earliest uses of color to differentiate links. It's a clear step forward in making digital navigation more intuitive, even if the iconic hyperlink blue hadn't appeared just yet.",
+    modalDescription: `<p>HyperTIES was an interactive system that introduced color to its interface, using cyan hyperlinks on a black background.</p>
+<p>It was part of an electronic journal used in academic and professional contexts.</p>
+<p>Although cyan isn't the same as dark blue, this marked one of the earliest uses of color to differentiate links.</p>
+<p>It's a clear step forward in making digital navigation more intuitive, even if the iconic hyperlink blue hadn't appeared just yet.</p>`,
     image: "images/1983 – HyperTIES system.webp",
+    downloadFile: "HyperTIES System.png"
   },
   {
     id: 3,
@@ -30,8 +37,12 @@ const cardsData = [
     headerTitle: "Visual Foundations",
     headerSubtitle: "of Hyperlinks",
     description: "Introduced dark blue in the UI (not yet for links), but most importantly...",
-    modalDescription: "Windows 1.0 brought a fully graphical interface to home computers. While hyperlinks weren't yet common, the interface used dark blue heavily in headings and window borders. Even more interesting, it introduced underlined text to indicate clickable areas—an early design convention that persists today. It also featured hover states, where the interface changed appearance when users moved the mouse over certain elements—another crucial element of modern hyperlink design.",
+    modalDescription: `<p>Windows 1.0 brought a fully graphical interface to home computers.</p>
+<p>While hyperlinks weren't yet common, the interface used dark blue heavily in headings and window borders.</p>
+<p>Even more interesting, it introduced underlined text to indicate clickable areas. An early design convention that persists today.</p>
+<p>It also featured hover states, where the interface changed appearance when users moved the mouse over certain elements. Another crucial element of modern hyperlink design.</p>`,
     image: "images/1985 – Windows 1.0.png",
+    downloadFile: "Windows 1.0.png"
   },
   {
     id: 4,
@@ -41,30 +52,42 @@ const cardsData = [
     headerTitle: "Visual Foundations",
     headerSubtitle: "of Hyperlinks",
     description: "Hyperlinks between cards/apps, but still black and white...",
-    modalDescription: "Apple's HyperCard allowed users to build and navigate between cards filled with content. It featured clickable areas, similar to hyperlinks, though without color. These links were purely functional and relied on layout and interaction rather than color or underline. Although the design was visually refined, it didn't help users identify links at a glance—making it a key example of how interaction came before visual identity in hyperlink design.",
+    modalDescription: `<p>Apple's HyperCard allowed users to build and navigate between cards filled with content.</p>
+<p>It featured clickable areas, similar to hyperlinks, though without color.</p>
+<p>These links were purely functional and relied on layout and interaction rather than color or underline.</p>
+<p>Although the design was visually refined, it didn't help users identify links at a glance. Making it a key example of how interaction came before visual identity in hyperlink design.</p>`,
     image: "images/1987 – HyperCard.jpg",
+    downloadFile: "HyperCard.png"
   },
   {
     id: 5,
     title: "Windows 3.0",
-    subtitle: "Microsoft, 1992",
+    subtitle: "Microsoft, 1990",
     year: 1992,
     headerTitle: "The Road",
     headerSubtitle: "to Interactivity",
     description: "Introduced 16 colors, but links remained black...",
-    modalDescription: "Windows 3.0 introduced support for 16 colors, which allowed for much richer interfaces. Yet, despite these new capabilities, links were still displayed as black text on a white background, and selected items flipped to white on black. It's clear that designers were still figuring out how to use color meaningfully. The use of blue for links wasn't there yet—but the environment was becoming more visually sophisticated.",
+    modalDescription: `<p>Windows 3.0 introduced support for 16 colors, which allowed for much richer interfaces.</p>
+<p>Yet, despite these new capabilities, links were still displayed as black text on a white background, and selected items flipped to white on black.</p>
+<p>It's clear that designers were still figuring out how to use color meaningfully.</p>
+<p>The use of blue for links wasn't there yet but the environment was becoming more visually sophisticated.</p>`,
     image: "images/1990 – Windows 3.0 .png",
+    downloadFile: "Windows 3.0.png"
   },
   {
     id: 6,
     title: "Windows 3.1",
-    subtitle: "Microsoft, 1990",
+    subtitle: "Microsoft, 1992",
     year: 1990,
     headerTitle: "The Road",
     headerSubtitle: "to Interactivity",
     description: "Microsoft uses hyperlink blue for active selections in the interface...",
-    modalDescription: "By this point, Microsoft had been using dark blue in its interfaces for several years. In Windows 3.1, we see blue used not only for layout but for interactive states—like when clicking on a drive or folder. This change suggests a growing link between the color blue and interactivity. It's not quite a blue hyperlink yet, but it's an important visual shift that predates Mosaic by about a year.",
+    modalDescription: `<p>By this point, Microsoft had been using dark blue in its interfaces for several years.</p>
+<p>In Windows 3.1, we see blue used not only for layout but for interactive states like when clicking on a drive or folder.</p>
+<p>This change suggests a growing link between the color blue and interactivity.</p>
+<p>It's not quite a blue hyperlink yet, but it's an important visual shift that predates Mosaic by about a year.</p>`,
     image: "images/April 6, 1992 – Windows 3.1 .webp",
+    downloadFile: "Windows 3.1.png"
   },
   {
     id: 7,
@@ -74,8 +97,11 @@ const cardsData = [
     headerTitle: "The Blue Hyperlink",
     headerSubtitle: "is Born",
     description: "Early versions used black underlined links, no blue yet...",
-    modalDescription: "The very first version of the Mosaic browser—often considered the ancestor of modern browsers—featured underlined black hyperlinks with an outline. This early interface didn't include blue yet, but it set the stage for it. The user guide mentioned visual cues like underlining and highlighting, emphasizing the importance of visibility and interaction clarity.",
+    modalDescription: `<p>The very first version of the Mosaic browser often considered the ancestor of modern browsers featured underlined black hyperlinks with an outline.</p>
+<p>This early interface didn't include blue yet, but it set the stage for it.</p>
+<p>The user guide mentioned visual cues like underlining and highlighting, emphasizing the importance of visibility and interaction clarity.</p>`,
     image: "images/January, 1993 – Mosaic.webp",
+    downloadFile: "Mosaic.png"
   },
   {
     id: 8,
@@ -85,43 +111,44 @@ const cardsData = [
     headerTitle: "The Blue Hyperlink",
     headerSubtitle: "is Born",
     description: "This is the official birth of the blue hyperlink...",
-    modalDescription: "Changed default anchor representations: blue and single solid underline for unvisited, dark purple and single dashed underline for visited. This was the first confirmed appearance of blue hyperlinks in a web browser. That exact color system—blue for unvisited, purple for visited—would go on to become the standard across the web.",
-    image: "images/1987 – HyperCard.jpg",
+    modalDescription: `<p>Changed default anchor representations: blue and single solid underline for unvisited, dark purple and single dashed underline for visited.</p>
+<p>This was the first confirmed appearance of blue hyperlinks in a web browser.</p>
+<p>That exact color system blue for unvisited, purple for visited would go on to become the standard across the web.</p>`,
+    image: "images/April 12, 1993 – Mosaic Version 0.13.webp",
+    downloadFile: "Mosaic Version 0.13.png"
   },
   {
     id: 9,
-    title: "Mosaic on Macintosh",
-    subtitle: "NCSA, 1993",
-    year: 1993,
-    headerTitle: "The Blue Hyperlink",
-    headerSubtitle: "is Born",
-    description: "First visual proof of a blue hyperlink in action...",
-    modalDescription: "A Mosaic port was released for Mac OS 7.1, and a screenshot of this version finally gave us visual confirmation: a blue hyperlink, clearly underlined. This is the first image-based proof that the now-iconic link style was in use. By this point, the visual language of the web—blue for unvisited, purple for visited—was firmly taking root.",
-    image: "images/September, 1993  – Mosaic Ports.webp",
-  },
-  {
-    id: 10,
     title: "Netscape Navigator",
     subtitle: "Marc Andreessen, 1994",
     year: 1994,
     headerTitle: "Standardization",
     headerSubtitle: "and Legacy",
     description: "Used the same blue links on gray background as Mosaic...",
-    modalDescription: "Created by Marc Andreessen, one of the developers behind Mosaic, Netscape Navigator carried over Mosaic's visual language. It featured blue underlined hyperlinks on a gray background, instantly familiar to users. With Netscape's growing popularity, this style became the default for web design. This version helped lock in the blue hyperlink as a web convention, setting the tone for what hyperlinks would look like for decades.",
+    modalDescription: `<p>Created by Marc Andreessen, one of the developers behind Mosaic, Netscape Navigator carried over Mosaic's visual language.</p>
+<p>It featured blue underlined hyperlinks on a gray background, instantly familiar to users.</p>
+<p>With Netscape's growing popularity, this style became the default for web design.</p>
+<p>This version helped lock in the blue hyperlink as a web convention, setting the tone for what hyperlinks would look like for decades.</p>`,
     image: "images/October 13, 1994 – Netscape Navigator.webp",
+    downloadFile: "Netscape Navigator.png"
   },
   {
-    id: 11,
+    id: 10,
     title: "Internet Explorer 1.0",
     subtitle: "Microsoft, 1995",
     year: 1995,
     headerTitle: "Standardization",
     headerSubtitle: "and Legacy",
     description: "Blue hyperlinks became a standard as they reached mainstream users...",
-    modalDescription: "Microsoft released its own browser, Internet Explorer, alongside Windows 95. Like Netscape, it featured blue links and a gray UI. But this time, it came pre-installed with the operating system—meaning millions of users saw and accepted this design immediately. This moment helped cement the blue hyperlink as a global standard, and marked the beginning of the famous browser wars.",
+    modalDescription: `<p>Microsoft released its own browser, Internet Explorer, alongside Windows 95.</p>
+<p>Like Netscape, it featured blue links and a gray UI.</p>
+<p>But this time, it came pre-installed with the operating system meaning millions of users saw and accepted this design immediately.</p>
+<p>This moment helped cement the blue hyperlink as a global standard, and marked the beginning of the famous browser wars.</p>`,
     image: "images/July 1995 – Internet Explorer 1.0.webp",
-  },
-]
+    downloadFile: "Internet Explorer 1.0.png"
+  }
+];
+
 
 document.addEventListener("DOMContentLoaded", () => {
   // Set current year in footer
@@ -419,10 +446,20 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("modalSubtitleDesktop").textContent = this.selectedCard.subtitle
       document.getElementById("modalImage").src = this.selectedCard.image
       document.getElementById("modalImage").alt = this.selectedCard.title
-      document.getElementById("modalDescription").textContent = this.selectedCard.modalDescription || this.selectedCard.description
+      document.getElementById("modalDescription").innerHTML = this.selectedCard.modalDescription || this.selectedCard.description
 
       this.modal.classList.add("active")
       document.body.style.overflow = "hidden"
+      const downloadLink = document.getElementById("downloadLink");
+if (downloadLink && this.selectedCard.downloadFile) {
+  const filePath = `fiches/${this.selectedCard.downloadFile}`;
+  downloadLink.href = filePath;
+  downloadLink.setAttribute("download", this.selectedCard.downloadFile);
+} else {
+  downloadLink.href = "#";
+  downloadLink.removeAttribute("download");
+}
+
     }
 
     closeModal() {

@@ -162,7 +162,7 @@ body {
   background-color: var(--blue-600);
   color: white;
   border: none;
-  border-radius: 0.375rem;
+  border-radius: 0.75rem;
   padding: 0.75rem 1.5rem;
   font-size: 1.125rem;
   display: flex;
@@ -244,8 +244,8 @@ footer {
   .moving-text-line {
   position: absolute;
   white-space: nowrap;
-  color: rgba(255, 255, 255, 0.621);
-  font-weight: 300;
+  color: rgba(255, 255, 255, 0.642);
+  font-weight: 500;
   width: max-content;
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -253,43 +253,43 @@ footer {
 }
 
 .line-1 {
-  top: 10%;
-  font-size: 2rem;
+  top: 0%;
+  font-size: 5rem;
   opacity: 0.6;
   animation: slideRightSlow 20s linear infinite;
 }
 
 .line-2 {
-  top: 25%;
-  font-size: 2rem;
+  top:15%;
+  font-size: 5rem;
   opacity: 0.4;
   animation: slideLeftSlow 25s linear infinite;
 }
 
 .line-3 {
-  top: 45%;
-  font-size: 2rem;
+  top: 30%;
+  font-size: 5rem;
   opacity: 0.5;
   animation: slideRightMedium 15s linear infinite;
 }
 
 .line-4 {
   bottom: 45%;
-  font-size: 2rem;
+  font-size: 5rem;
   opacity: 0.45;
   animation: slideLeftMedium 18s linear infinite;
 }
 
 .line-5 {
-  bottom: 25%;
-  font-size: 2rem;
+  bottom: 30%;
+  font-size: 5rem;
   opacity: 0.35;
   animation: slideRightFast 12s linear infinite;
 }
 
 .line-6 {
-  bottom: 10%;
-  font-size: 2rem;
+  bottom: 15%;
+  font-size: 5rem;
   opacity: 0.3;
   animation: slideLeftFast 10s linear infinite;
 }
@@ -405,7 +405,7 @@ footer {
   font-size: 3rem;
   font-weight: bold;
   color: #ffffff;
-  margin-bottom: 20px;
+  margin-bottom: 27px;
 }
 
 .welcome-description {
@@ -428,7 +428,7 @@ footer {
 
 .btn {
   padding: 15px 30px;
-  border-radius: 8px;
+  border-radius: 0.75rem;
   font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
@@ -452,29 +452,29 @@ footer {
 /* Responsive pour mobile */
 @media (max-width: 768px) {
   .moving-text-line {
-    font-size: 1.5rem;
+    font-size: 3rem;
   }
 
   .line-1,
   .line-4 {
-    font-size: 1.5rem;
+    font-size: 3rem;
   }
 
   .line-2,
   .line-5 {
-    font-size: 1.2rem;
+    font-size: 3rem;
   }
 
   .line-3 {
-    font-size: 2rem;
+    font-size: 3rem;
   }
 
   .line-6 {
-    font-size: 1rem;
+    font-size: 3rem;
   }
 
   .welcome-title {
-    font-size: 2.5rem;
+    font-size: 1.6rem;
   }
 
   .intro-title h1 {
@@ -516,12 +516,13 @@ footer {
 .fade-in-1 {
   opacity: 0;
   animation: fadeInUp 0.8s 0.5s forwards;
+    font-size: 2.5rem;
 }
 
 .fade-in-2 {
   opacity: 0;
   animation: fadeInUp 0.8s 1.2s forwards;
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: lighter;
     text-decoration: underline;
   text-decoration-thickness: 2px;
@@ -531,13 +532,13 @@ footer {
 .fade-in-3 {
   opacity: 0;
   animation: fadeInLeft 0.8s 1.6s forwards;
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 
 .fade-in-4 {
   opacity: 0;
   animation: fadeInScale 0.8s 2s forwards;
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 @media (min-width: 768px) {
   .fade-in-2,
@@ -807,7 +808,7 @@ footer {
 
 .timeline-card-eye-button {
   position: absolute;
-  bottom: 0.75rem;
+  top: -1rem; /* déborde un peu vers le haut */
   right: 0.75rem;
   width: 2.5rem;
   height: 2.5rem;
@@ -819,7 +820,10 @@ footer {
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.425);
 }
+
 
 .timeline-card-eye-button:hover {
   background: var(--blue-700);
@@ -895,6 +899,12 @@ footer {
   opacity: 0;
   transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
+.modal-description p {
+  margin-bottom: 1rem;
+  line-height: 1.8;
+  font-size: 1rem;
+  color: #374151;
+}
 
 .modal.active .modal-content {
   transform: translateY(0);
@@ -966,16 +976,22 @@ footer {
 }
 
 .modal-title-desktop {
-  font-size: 1.875rem;
-  font-weight: bold;
-  color: #111827;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--blue-700);
   margin-bottom: 0.5rem;
+  text-align: center;
 }
 
+
 .modal-subtitle-desktop {
-  font-size: 1rem;
-  color: #6b7280;
+  font-size: 1.125rem;
+  color: var(--slate-600);
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
+
 
 .modal-subtitle-mobile {
   font-size: 0.875rem;
@@ -985,11 +1001,13 @@ footer {
 
 .modal-image {
   width: 100%;
-  height: 12rem;
+  height: auto;
+  max-height: 300px;
   object-fit: cover;
-  border-radius: 0.75rem;
-  margin-bottom: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
 }
+
 
 .modal-description {
   font-size: 1rem;
@@ -1015,6 +1033,19 @@ footer {
 .modal-safe-area {
   height: 2rem;
 }
+
+.download-link {
+  color: var(--blue-600);
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: color 0.3s;
+}
+
+.download-link:hover {
+  color: var(--blue-800);
+}
+
 
 @media (min-width: 640px) {
   .cards-header {
@@ -1185,11 +1216,13 @@ footer {
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: var(--slate-800);
+  text-align: center;
 }
 
 .card-description {
   color: var(--slate-600);
   font-size: 0.875rem;
+  text-align: center;
 }
 
 .card-content {
@@ -1482,7 +1515,7 @@ footer {
   background-color: var(--slate-200);
   color: var(--slate-700);
   border: none;
-  border-radius: 0.375rem;
+  border-radius: 0.75rem;
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   cursor: pointer;
@@ -1948,13 +1981,13 @@ input[type="range"]::-webkit-slider-thumb:hover {
   text-decoration: underline;
   background: none;
   border: none;
-  font-size: inherit;
   font-weight: 500;
   cursor: pointer;
   position: relative;
   display: inline-block;
   transition: all 0.3s ease;
   text-underline-offset: 4px;
+  font-size: 1.2rem;
 }
 
 .interactive-word:hover {
@@ -2022,7 +2055,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
   background-color: var(--blue-600);
   color: white;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   padding: 0.75rem 1.5rem;
   font-size: 1.125rem;
   display: flex;
@@ -2220,7 +2253,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
   }
 
   .interactive-text {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
   }
 }
 
@@ -2236,4 +2269,14 @@ input[type="range"]::-webkit-slider-thumb:hover {
   .conclusion-text {
     font-size: 1.25rem;
   }
+}
+#conclusion {
+  background-color: var(--slate-50);
+  background-image: radial-gradient(circle at 30% 70%, var(--blue-50), transparent 60%),
+    radial-gradient(circle at 70% 30%, var(--purple-100, #e0e7ff), transparent 60%);
+}
+#perception-test {
+  background-color: var(--slate-50);
+  background-image: radial-gradient(circle at 30% 70%, var(--blue-50), transparent 60%),
+    radial-gradient(circle at 70% 30%, var(--purple-100, #e0e7ff), transparent 60%);
 }
