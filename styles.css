@@ -169,7 +169,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
-  margin: 3rem auto 0;
+margin : 20px auto;
   position: relative;
   overflow: hidden;
   transition: background-color 0.3s ease;
@@ -1934,10 +1934,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
 
 /* Section 5: Conclusion - AMÉLIORÉ ET CORRIGÉ */
 #conclusion {
-  background-color: var(--slate-50);
-  background-image: linear-gradient(to bottom, white, var(--slate-50) 15%),
-    radial-gradient(circle at 70% 30%, var(--blue-50), transparent 60%),
-    radial-gradient(circle at 30% 70%, var(--slate-100), transparent 60%);
+  background-color: var(--yellow-50);
 }
 
 .conclusion-content {
@@ -2260,7 +2257,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
     font-size: 1.25rem;
   }
 }
-#conclusion {
+#conclusions {
   background-color: var(--slate-50);
   background-image: radial-gradient(circle at 30% 70%, var(--blue-50), transparent 60%),
     radial-gradient(circle at 70% 30%, var(--purple-100, #e0e7ff), transparent 60%);

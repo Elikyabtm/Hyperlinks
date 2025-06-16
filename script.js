@@ -63,7 +63,7 @@ const cardsData = [
     id: 5,
     title: "Windows 3.0",
     subtitle: "Microsoft, 1990",
-    year: 1992,
+    year: 1990,
     headerTitle: "The Road",
     headerSubtitle: "to Interactivity",
     description: "Introduced 16 colors, but links remained black...",
@@ -78,7 +78,7 @@ const cardsData = [
     id: 6,
     title: "Windows 3.1",
     subtitle: "Microsoft, 1992",
-    year: 1990,
+    year: 1992,
     headerTitle: "The Road",
     headerSubtitle: "to Interactivity",
     description: "Microsoft uses hyperlink blue for active selections in the interface...",
@@ -286,9 +286,10 @@ document.addEventListener("DOMContentLoaded", () => {
       scrollIndicator.style.opacity = "0"
 
       // Après la transition, afficher le texte de bienvenue
-      setTimeout(() => {
-        welcomeIntro.classList.remove("hidden")
-        welcomeIntro.classList.add("show")
+    setTimeout(() => {
+    mainIntroText.classList.add("hidden"); // Supprime-le du flux visuel
+    welcomeIntro.classList.add("show");
+    welcomeIntro.classList.remove("hidden");
 
         // Réafficher l'indicateur de scroll après l'intro
         setTimeout(() => {
